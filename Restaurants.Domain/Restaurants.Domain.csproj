@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\Projects\Restaurants\Restaurants.Domain\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="D:\Projects\Restaurants\Restaurants.Domain\.editorconfig" />
+  </ItemGroup>
+
 </Project>

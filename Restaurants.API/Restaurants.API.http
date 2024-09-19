@@ -18,7 +18,12 @@ POST {{Restaurants_API_HostAddress}}/api/restaurants
 Content-Type: application/json
 
 {
-
+    "Name": "dd33",
+    "Description" : "New SL restaurant",
+    "Category" : "Sri Lankan",
+    "ContactEmail" : "sds@gmail.com",
+    "ContactNumber" : "2343",
+    "PostCode" : "22"
 
 }
 
