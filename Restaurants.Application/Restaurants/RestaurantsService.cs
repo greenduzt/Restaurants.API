@@ -31,4 +31,15 @@ internal class RestaurantsService(IRestaurantsRepository restaurantsRepository, 
 
         return restaurantDto;
     }
+
+    public async Task<int> Create(CreateRestaurantDto createRestaurantDto)
+    {
+        logger.LogInformation("Creating a restaurant");
+
+        var restaurant = mapper.Map<Restaurant>(createRestaurantDto);
+
+        int id = await restaurantsRepository.Create(restaurant);
+
+        return id;
+    }
 }

@@ -13,3 +13,14 @@ GET {{Restaurants_API_HostAddress}}/api/restaurants
 GET {{Restaurants_API_HostAddress}}/api/restaurants/1
 
 ###
+
+POST {{Restaurants_API_HostAddress}}/api/restaurants
+Content-Type: application/json
+
+{
+
+
+}
+
+###
+GET https://localhost:7008/api/restaurants/3

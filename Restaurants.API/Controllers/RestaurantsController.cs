@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Restaurants.Application.Restaurants;
+using Restaurants.Application.Restaurants.Dtos;
 
 namespace Restaurants.API.Controllers;
 
-[ApiController]
+//[ApiController]
 [Route("api/restaurants")]
 public class RestaurantsController(IRestaurantsService restaurantsService) : ControllerBase
 {
@@ -27,5 +28,17 @@ public class RestaurantsController(IRestaurantsService restaurantsService) : Con
 
         return Ok(restaurant);
     
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantDto createRestaurantDto)
+    {
+        if(!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+        int id = await restaurantsService.Create(createRestaurantDto);
+
+        return CreatedAtAction(nameof(GettById),new { id },null);
     }
 }
