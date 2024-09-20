@@ -10,7 +10,7 @@ GET {{Restaurants_API_HostAddress}}/api/restaurants
 
 ###
 
-GET {{Restaurants_API_HostAddress}}/api/restaurants/1
+GET {{Restaurants_API_HostAddress}}/api/restaurants/6
 
 ###
 
@@ -18,14 +18,38 @@ POST {{Restaurants_API_HostAddress}}/api/restaurants
 Content-Type: application/json
 
 {
-    "Name": "dd33",
-    "Description" : "New SL restaurant",
-    "Category" : "Sri Lankan",
+    "Name": "Burger Bun",
+    "Description" : "Burger restaurant",
+    "Category" : "American",
     "ContactEmail" : "sds@gmail.com",
     "ContactNumber" : "2343",
-    "PostCode" : "22"
+    "PostCode" : "33-535"
 
 }
 
 ###
-GET https://localhost:7008/api/restaurants/3
+
+DELETE {{Restaurants_API_HostAddress}}/api/restaurants/7
+
+
+
+###
+
+
+
+
+PATCH {{Restaurants_API_HostAddress}}/api/restaurants/6
+Content-Type: application/json
+
+{
+    "id": 6,
+    "name": "Cham's Rest 1234",
+    "description": "New SL restaurant 3",
+    "category": "Sri Lankan",
+    "hasDelivery": false,
+    "city": "Noble park",
+    "street": "500 hshshs VCC",
+    "postCode": null 
+}
+
+###

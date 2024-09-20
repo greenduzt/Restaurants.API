@@ -17,4 +17,12 @@
     <ProjectReference Include="..\Restaurants.Domain\Restaurants.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\Projects\Restaurants\Restaurants.Application\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="D:\Projects\Restaurants\Restaurants.Application\.editorconfig" />
+  </ItemGroup>
+
 </Project>
