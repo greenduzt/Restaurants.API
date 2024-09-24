@@ -10,7 +10,7 @@ GET {{Restaurants_API_HostAddress}}/api/restaurants
 
 ###
 
-GET {{Restaurants_API_HostAddress}}/api/restaurants/6
+GET {{Restaurants_API_HostAddress}}/api/restaurants/666
 
 ###
 
@@ -18,9 +18,9 @@ POST {{Restaurants_API_HostAddress}}/api/restaurants
 Content-Type: application/json
 
 {
-    "Name": "Burger Bun",
-    "Description" : "Burger restaurant",
-    "Category" : "American",
+    "Name": "Burger Bun Noble",
+    "Description" : "Burger restaurant Noble Park",
+    "Category" : "Sri Lankan",
     "ContactEmail" : "sds@gmail.com",
     "ContactNumber" : "2343",
     "PostCode" : "33-535"

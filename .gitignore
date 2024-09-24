@@ -364,3 +364,6 @@ FodyWeavers.xsd
 
 #
 /Restaurants.API/appsettings.Development.json
+
+#
+/Restaurants.API/Logs
