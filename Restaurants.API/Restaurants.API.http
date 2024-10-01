@@ -10,7 +10,7 @@ GET {{Restaurants_API_HostAddress}}/api/restaurants
 
 ###
 
-GET {{Restaurants_API_HostAddress}}/api/restaurants/666
+GET {{Restaurants_API_HostAddress}}/api/restaurants/3
 
 ###
 
@@ -31,12 +31,7 @@ Content-Type: application/json
 
 DELETE {{Restaurants_API_HostAddress}}/api/restaurants/7
 
-
-
 ###
-
-
-
 
 PATCH {{Restaurants_API_HostAddress}}/api/restaurants/6
 Content-Type: application/json
@@ -50,6 +45,18 @@ Content-Type: application/json
     "city": "Noble park",
     "street": "500 hshshs VCC",
     "postCode": null 
+}
+
+###
+
+POST {{Restaurants_API_HostAddress}}/api/restaurant/300/dishes
+Content-Type: application/json
+
+{
+  "Name" : "Double Cheese Burger",
+  "Description" : "Home made burger",
+  "Price" : 18,
+  "KiloCalories" : 220
 }
 
 ###
