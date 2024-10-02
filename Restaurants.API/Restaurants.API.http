@@ -49,7 +49,7 @@ Content-Type: application/json
 
 ###
 
-POST {{Restaurants_API_HostAddress}}/api/restaurant/300/dishes
+POST {{Restaurants_API_HostAddress}}/api/restaurant/3/dishes
 Content-Type: application/json
 
 {
@@ -58,5 +58,17 @@ Content-Type: application/json
   "Price" : 18,
   "KiloCalories" : 220
 }
+
+###
+
+GET {{Restaurants_API_HostAddress}}/api/restaurant/3/dishes
+
+###
+
+GET {{Restaurants_API_HostAddress}}/api/restaurant/3/dishes/5
+
+###
+
+DELETE {{Restaurants_API_HostAddress}}/api/restaurant/37/dishes
 
 ###

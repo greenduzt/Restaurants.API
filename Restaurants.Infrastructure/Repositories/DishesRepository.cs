@@ -19,6 +19,12 @@ public class DishesRepository(RestaurantsDbContext dbContext) : IDishesRepositor
         throw new NotImplementedException();
     }
 
+    public async Task Delete(IEnumerable<Dish> dishes)
+    {
+        dbContext.RemoveRange(dishes);
+        await dbContext.SaveChangesAsync();
+    }
+
     public Task<IEnumerable<Dish>> GetAllAsync()
     {
         throw new NotImplementedException();
