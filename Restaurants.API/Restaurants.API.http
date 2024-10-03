@@ -1,16 +1,14 @@
 @Restaurants_API_HostAddress = https://localhost:7008
+@token = CfDJ8JTmmV4OhTdGrfWl2kOFzwOayWJ1inBESJR5BqYcOU23Sb9ApwoOPrqLBu6hEazay4Aec_JIX40_KRdW3_BwH1WMT7HpMbzk3TNPZuCNffquz0_VgjKoH5UuV_ItzVLJPbU29hxUS4YFdJJr9sqwaC59T_ddy7n8UU_9TrTGIp87qe8v2IYkJR7LWgn9-dPH9PpvJnO7ESGZcKy099oqdpR7bQwH20YULcKXwghBpJK2wAEZ6asmEqvv0RwoaMYYxfc9m5uDELTeR17m2QrFj3yk1g8_YrIKXbsWOSmA3rKhX9GLw5qH9l1N2EBvYp3EndAAMAr1jyc6CE8OWTkM9RSOnukirWhFNQqwK_JrM8vFPwMPshdXxMtRhoU6eydvQoQBeKmOTCqplIFv47j-46o-QYUTd-DgbTDqeA0rrgWw0yzlAX3cACd67ZH238Kh4fc-pIyq-wEkTirE9aJXdB4dqqoiYWS3-sZbtGJke7IlACTvYQ-znw3Iljmno_2xo4YVkaZqeRFtUBbPXedYW83BF666nlsL8iEfmC9_YPtnRIjaogsKVE6LykN56sUk-xTpencQy-7NZ5jh8XEs423YgdTxqoXaBS3ofH81AZ-8cdg5Ib8P1VDMLwHVj4MCDfBtYoQ4J1fPgyx0esr-WbTPHUVLnnYf8n2b-3MeC_5xvEji4YbJOEsXvA7ORZpcOQ
 
-GET {{Restaurants_API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
 
 GET {{Restaurants_API_HostAddress}}/api/restaurants
-
+Authorization : Bearer {{token}}
 
 ###
 
 GET {{Restaurants_API_HostAddress}}/api/restaurants/3
+Authorization : Bearer {{token}}
 
 ###
 
@@ -72,3 +70,19 @@ GET {{Restaurants_API_HostAddress}}/api/restaurant/3/dishes/5
 DELETE {{Restaurants_API_HostAddress}}/api/restaurant/37/dishes
 
 ###
+POST {{Restaurants_API_HostAddress}}/api/identity/register
+Content-Type: application/json
+
+{
+    "email" : "chamara@test.com",
+    "password" : "Password1$"
+}
+
+###
+POST {{Restaurants_API_HostAddress}}/api/identity/login
+Content-Type: application/json
+
+{
+    "email" : "chamara@test.com",
+    "password" : "Password1$"
+}
