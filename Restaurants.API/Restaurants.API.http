@@ -1,6 +1,5 @@
 @Restaurants_API_HostAddress = https://localhost:7008
-@token = CfDJ8JTmmV4OhTdGrfWl2kOFzwOayWJ1inBESJR5BqYcOU23Sb9ApwoOPrqLBu6hEazay4Aec_JIX40_KRdW3_BwH1WMT7HpMbzk3TNPZuCNffquz0_VgjKoH5UuV_ItzVLJPbU29hxUS4YFdJJr9sqwaC59T_ddy7n8UU_9TrTGIp87qe8v2IYkJR7LWgn9-dPH9PpvJnO7ESGZcKy099oqdpR7bQwH20YULcKXwghBpJK2wAEZ6asmEqvv0RwoaMYYxfc9m5uDELTeR17m2QrFj3yk1g8_YrIKXbsWOSmA3rKhX9GLw5qH9l1N2EBvYp3EndAAMAr1jyc6CE8OWTkM9RSOnukirWhFNQqwK_JrM8vFPwMPshdXxMtRhoU6eydvQoQBeKmOTCqplIFv47j-46o-QYUTd-DgbTDqeA0rrgWw0yzlAX3cACd67ZH238Kh4fc-pIyq-wEkTirE9aJXdB4dqqoiYWS3-sZbtGJke7IlACTvYQ-znw3Iljmno_2xo4YVkaZqeRFtUBbPXedYW83BF666nlsL8iEfmC9_YPtnRIjaogsKVE6LykN56sUk-xTpencQy-7NZ5jh8XEs423YgdTxqoXaBS3ofH81AZ-8cdg5Ib8P1VDMLwHVj4MCDfBtYoQ4J1fPgyx0esr-WbTPHUVLnnYf8n2b-3MeC_5xvEji4YbJOEsXvA7ORZpcOQ
-
+@token = CfDJ8JTmmV4OhTdGrfWl2kOFzwNcjiW7_qieGd7xv3QaPeuC_OAcUH_kgq1PKIUBThU5twT96GnMyFQGwpLHi3LwYpIp2aYhSps_Sz6ATRpV-SDJ27hhgqFZJe3PLV2jJR37Sj3VIY5BI72ymMH0KtwkaXWL9sMmM7H8OtCZnAKMY4XaVsMuvjIXm1UjPA_306Ih_C9TKXPGRUvCaLisYfcMYjzvn2JJLqXzO0EtSiN1-HI-D0pfK3KKB7AxBgaTsn_-5c1xn3LwHqDRm4hvR-w1Z6Yo___01WB5brpTYKjOK7RbSAJgxPxTCaqhDKR6eYIH2Vngot4NVTuuHQe1f0gN3-LUwY8QdY3dRdOA_IJJGtWdupN99rJhWJDTtNQGotXfnYO1YBwb3kSSNaLC37vmR4wZVwpA_szV_l35Kt1CuYPW4jX0EMcSyCXyY_zreRGwzWPIHlDeCW6w2jCSaYWQQKENorW30MCZdmhn3Bidje0JzYidQv3SyKR0HzRRNUi5Qw-DmgHJ3tN4SFZY7l9p4pawk_nimKa8NHO3cStJWOGlgmqsAK5_5ZEBDJ0ec4YHCpkhx9H8Vxpj5cQAxPETWsci4cX5S4t-0RsCPNulw-yeACJTKcDrgh6xk3xBOcR-D1UTAn82gpbEVMVIVrgIwWIpBkshUULHaQhnttY5E4rMmIuC8WngJc6iVfcoFPGGds9QS-p1OCu0e5_mF12ZV6EQBu0K8mHAlyXqSTz7y-Q4_mWlLPRQOPbTDCklx66R8PEBqQc_mxRXObK5PTaKd6SIetES6Uw2KJXGQYt7sKRN
 
 GET {{Restaurants_API_HostAddress}}/api/restaurants
 Authorization : Bearer {{token}}
@@ -13,11 +12,12 @@ Authorization : Bearer {{token}}
 ###
 
 POST {{Restaurants_API_HostAddress}}/api/restaurants
+Authorization : Bearer {{token}}    
 Content-Type: application/json
 
 {
-    "Name": "Burger Bun Noble",
-    "Description" : "Burger restaurant Noble Park",
+    "Name": "Burger Bun Gestone Park",
+    "Description" : "Burger restaurant Gestone Park",
     "Category" : "Sri Lankan",
     "ContactEmail" : "sds@gmail.com",
     "ContactNumber" : "2343",
@@ -74,7 +74,7 @@ POST {{Restaurants_API_HostAddress}}/api/identity/register
 Content-Type: application/json
 
 {
-    "email" : "chamara@test.com",
+    "email" : "owner@test.com",
     "password" : "Password1$"
 }
 
@@ -83,6 +83,6 @@ POST {{Restaurants_API_HostAddress}}/api/identity/login
 Content-Type: application/json
 
 {
-    "email" : "chamara@test.com",
+    "email" : "owner@test.com",
     "password" : "Password1$"
 }

@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using Restaurants.Application.Commands;
+using Restaurants.Application.Users;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Exceptions;
 
-namespace Restaurants.Application.Users.Commands;
+namespace Restaurants.Application.Commands.UpdateUserDetails;
 
 public class UpdateUserDetailsCommandHandler(ILogger<UpdateUserDetailsCommandHandler> logger,
     IUserContext userContext,
@@ -27,6 +27,6 @@ public class UpdateUserDetailsCommandHandler(ILogger<UpdateUserDetailsCommandHan
         dbUser.Nationality = request.Nationality;
         dbUser.DateOfBirth = request.DateOfBirth;
 
-        await userStore.UpdateAsync(dbUser,cancellationToken);
+        await userStore.UpdateAsync(dbUser, cancellationToken);
     }
 }
