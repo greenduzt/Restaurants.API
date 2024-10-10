@@ -1,5 +1,6 @@
 @Restaurants_API_HostAddress = https://localhost:7008
-@token = CfDJ8JTmmV4OhTdGrfWl2kOFzwMg_n2ze-QCMTnW9qjwCdXm6lR-wOAjy-KUA4uz2gzYlY_Smw0puP64HZcyZ9DPxNQZXnCtfZxpZAis52zEO6kS2m12SOMFvbZtAUmNvJR_g6uD1lJADNhDKg5kcgZwZAsnLC9nnkUa9RhqvGTFwno-UbP4R_ehQd-cBKIaVuJISX0m215EwS6QnQ9X_WmCy2Lor60Rq9Hk1zOjmNhWZN7SnbdimSAZztaWgXdU72d7CRyvVLRUK5k0igYIRipAbS5_Ys63a7_I3-aX0IbRef1xTCCHjz9hLI3URhfT5AihxvcOT_ClBZ5ylLreriOufHtluXGrTac5k8POEzjeBUzhq2GsAtphcO9wYtE0c41_NlPexsyID4wbDLAWVHj43iGYIH2aNDxmedtUDuTftJleGPwSh421qJLjjb5Xq1YuGN6ng6jcfklsFZxbHl39h9C0xTMuMzR3bxsxejA2CsoI5qQ3IumKpCKtsqHP1c5qSlIThNvArSKwI8XVTe0Gfs2_mpdDCrK8dPOI6-vz56svrFh7SY4VJLtPxa79ql1PK5cBOwAwAroMl0M2sk0HqPmEKLPluqu3LJVbn_7aG2TIDwGzxOq4XFRmGVIrMgrPUM36wQ-Sogfkh_dCMLxDbK7csL55RrLibvMq0NttUELiuYu9u5y-HuRIohkjGihcIuHBfc2gFz89V2q9Hjzlnr6KueGZ64u-fIlyLAT0uD1GJGWhrqBxMPJ42U7J4UZRCpQnL5Gyo3kdTHYfAk9iz-TZI2zMCm3hjmA4H7GCrgyp
+@token = 
+
 
 
 GET {{Restaurants_API_HostAddress}}/api/restaurants
@@ -61,6 +62,7 @@ Content-Type: application/json
 ###
 
 GET {{Restaurants_API_HostAddress}}/api/restaurant/3/dishes
+Authorization : Bearer {{token}}
 
 ###
 
@@ -84,6 +86,19 @@ POST {{Restaurants_API_HostAddress}}/api/identity/login
 Content-Type: application/json
 
 {
-    "email" : "owner@test.com",
+    "email" : "chamara@test.com",
     "password" : "Password1$"
 }
+
+###
+
+PATCH {{Restaurants_API_HostAddress}}/api/identity/user
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "Nationality" : "French",
+  "DateOfBirth" : "2015-07-10"
+}
+
+###
