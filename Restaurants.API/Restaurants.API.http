@@ -1,5 +1,5 @@
 @Restaurants_API_HostAddress = https://localhost:7008
-@token = 
+@token = CfDJ8JTmmV4OhTdGrfWl2kOFzwMUj2aV_m2yWi0NzWJ-pYhwe6J1FZt6wX0xZWtymIpgXZwLD9pik3a-uBbiOCrV3JuLvYqzRej17wxazDQ8O2HctKMB3MnNnM7fJTzSV6RlTKzxnNmPc4_sAT6htNWgBwRRQyzvIpEZ09dsR_ZdJxR_qZRHd73bNXfmM7ZXw-9hNReqJI5eHuylWnmCk8BUvokDnCZOgivVWSemM9zGm9AKAeK7Fi9CmZq43F0ZL7Y5h562dF_fMY98XSNvTVy-nq5YlopSkgAGzHIBzXNmQiUBlKfAlxb-_nCJ8-ffEdQEDqAVBCuSzVg7zyEKNFzGBoJx-NA3Qk5qePo2xkv63mxainyzKg24SViXvuKZc1mKSN6yGC6ZnTA-ab1nCR76REgi9rZPSiV-jEfiC0rJ6tz4_w4EEcbIbcUW6DjksIt7J7Kg6GOHBD0Y8N008GsXbRO6f-jp_VvzlJTWJKGTrhZCC-uq2QleszRvuchQpkjgU1Fd7rYBd_367gysB5HN9SWDmLNb1LxhmUnsWVkt_WYNHysqsNjxli_CZ-z86wHQQvzCU9jYqaxAB6CS2sXgafFJ7kU5tXNYiagHbkx25hQzljnkCv0euM1ae9PXDPggWAKxfNRUGeEXpsGGGATU5IoMcCwOY52aQkLLmG0MgWRjsHhXwRAx0iDf7QkQ_cKLSaMoujkY-4G8R2sgIoL6LL6CzxnhbkLG0E85BYg0i393xs7l1ulnfT3S5mgQfWszBWv6zfgGYFwf8NEwxlPXX41wP6clAmja2_o5DH8JtQsS00tMy7-yNyJMfAbQSCiH_LwUhnVFLC7vtWwYz4VJAJv9LWfio1h3bGoQTE0DNwnkNk3JmjpcLC9ND7afwiHQmw
 
 
 
@@ -18,12 +18,12 @@ Authorization : Bearer {{token}}
 Content-Type: application/json
 
 {
-    "Name": "Burger Bun Gestone Park",
-    "Description" : "Burger restaurant Gestone Park",
+    "Name": "Owner Restaurant",
+    "Description" : "Owners Restaurant Beef and Chicken",
     "Category" : "Sri Lankan",
-    "ContactEmail" : "sds@gmail.com",
-    "ContactNumber" : "2343",
-    "PostCode" : "33-535"
+    "ContactEmail" : "oz@gmail.com",
+    "ContactNumber" : "0022656",
+    "PostCode" : "43-678"
 
 }
 
@@ -86,7 +86,7 @@ POST {{Restaurants_API_HostAddress}}/api/identity/login
 Content-Type: application/json
 
 {
-    "email" : "chamara@test.com",
+    "email" : "owner@test.com",
     "password" : "Password1$"
 }
 
