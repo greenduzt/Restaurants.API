@@ -56,7 +56,7 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
     {
        await mediator.Send(new DeleteRestaurantCommand(id));
                
-       return NotFound();
+       return NoContent();
     }
 
     [HttpPatch("{id}")]

@@ -1,5 +1,5 @@
 @Restaurants_API_HostAddress = https://localhost:7008
-@token = CfDJ8JTmmV4OhTdGrfWl2kOFzwMUj2aV_m2yWi0NzWJ-pYhwe6J1FZt6wX0xZWtymIpgXZwLD9pik3a-uBbiOCrV3JuLvYqzRej17wxazDQ8O2HctKMB3MnNnM7fJTzSV6RlTKzxnNmPc4_sAT6htNWgBwRRQyzvIpEZ09dsR_ZdJxR_qZRHd73bNXfmM7ZXw-9hNReqJI5eHuylWnmCk8BUvokDnCZOgivVWSemM9zGm9AKAeK7Fi9CmZq43F0ZL7Y5h562dF_fMY98XSNvTVy-nq5YlopSkgAGzHIBzXNmQiUBlKfAlxb-_nCJ8-ffEdQEDqAVBCuSzVg7zyEKNFzGBoJx-NA3Qk5qePo2xkv63mxainyzKg24SViXvuKZc1mKSN6yGC6ZnTA-ab1nCR76REgi9rZPSiV-jEfiC0rJ6tz4_w4EEcbIbcUW6DjksIt7J7Kg6GOHBD0Y8N008GsXbRO6f-jp_VvzlJTWJKGTrhZCC-uq2QleszRvuchQpkjgU1Fd7rYBd_367gysB5HN9SWDmLNb1LxhmUnsWVkt_WYNHysqsNjxli_CZ-z86wHQQvzCU9jYqaxAB6CS2sXgafFJ7kU5tXNYiagHbkx25hQzljnkCv0euM1ae9PXDPggWAKxfNRUGeEXpsGGGATU5IoMcCwOY52aQkLLmG0MgWRjsHhXwRAx0iDf7QkQ_cKLSaMoujkY-4G8R2sgIoL6LL6CzxnhbkLG0E85BYg0i393xs7l1ulnfT3S5mgQfWszBWv6zfgGYFwf8NEwxlPXX41wP6clAmja2_o5DH8JtQsS00tMy7-yNyJMfAbQSCiH_LwUhnVFLC7vtWwYz4VJAJv9LWfio1h3bGoQTE0DNwnkNk3JmjpcLC9ND7afwiHQmw
+@token = CfDJ8JTmmV4OhTdGrfWl2kOFzwO9BMehBm2CfWqWSuOnfB-E1hffX-kITmrUP8ZVcn5qd9tKv4pdSYumXLk6_nybbKPun68eVGqNz98jB4XrFtu47ibkJ-P0FU8A8mQeJ-YV6VIUlA7RlzCNh17G1fi4wEaot90DAOeWMA-QcWt_2LemyWI2t_qn4fNciq2F-TsHCoMNaxijF7gxqmyIx5x6NWjjOd1kTJDyva91T2FK0jl3DLTHYNXDU1B9OTRjqniV96dzmSY4tinSS95lcZlkv37zX0v0lTNRYpfuSdmwruzJoo6cqykqGQA0V1EAiYiLAdo8LZxJ2-UKjQSeccW5NdquLGl64wEq9y2mFVAM7neEQgGtoDQ0hdpmD7yKAsvSgXzm2s9tY2JzL6X6qNQfZr2LCStgbQ2MWXkcZ0lE0DgGvR6NqGAGpl8XRmEOxQ3JbQlxiqjCDVczsGFXPfX4KkwC9g9gWpnz-HTtRs3kJNvZW4TXgm-4a8SwV1Em7AT5KsckhMwjGiIX5Bs9k9f7gB4tafMe-YkQSoxCeZBLzpUK3fFLdPZLqSu8xu7IcbMvB8XCPAv1ZMy73zEYQMPo10vfaTB-nb9Cp2wqm6hPYZLxTho8B1syT9HBCsOa1yqwo3f9eRNukJmJ-FnSG1iXCKK2ZMoy7He96iKXXtL6nTDb5rQ0x4LxU9YXccs-Nk3S2n4AIPAL9q2b0pjKfuOeYKLSMoixp4Lkw7rlLZqEhFnI___JBzMbWBbL9nTchHnO3_dki8zMMQT8fpvG2fZhJ0Bq4T_GSZChsg3uZMmzEEvz
 
 
 
@@ -8,7 +8,7 @@ Authorization : Bearer {{token}}
 
 ###
 
-GET {{Restaurants_API_HostAddress}}/api/restaurants/3
+GET {{Restaurants_API_HostAddress}}/api/restaurants/5
 Authorization : Bearer {{token}}
 
 ###
@@ -29,22 +29,21 @@ Content-Type: application/json
 
 ###
 
-DELETE {{Restaurants_API_HostAddress}}/api/restaurants/7
+DELETE {{Restaurants_API_HostAddress}}/api/restaurants/5
+Authorization: Bearer {{token}}
 
 ###
 
-PATCH {{Restaurants_API_HostAddress}}/api/restaurants/6
+PATCH {{Restaurants_API_HostAddress}}/api/restaurants/5
 Content-Type: application/json
+Authorization : Bearer {{token}}
 
-{
-    "id": 6,
-    "name": "Cham's Rest 1234",
-    "description": "New SL restaurant 3",
-    "category": "Sri Lankan",
-    "hasDelivery": false,
-    "city": "Noble park",
-    "street": "500 hshshs VCC",
-    "postCode": null 
+{    
+    "name": "Updated name",
+    "Description" : "Updated description",
+    "HasDelivery" : false,
+     "Category" : "Sri Lankan"
+   
 }
 
 ###
@@ -86,7 +85,7 @@ POST {{Restaurants_API_HostAddress}}/api/identity/login
 Content-Type: application/json
 
 {
-    "email" : "owner@test.com",
+    "email" : "user@test.com",
     "password" : "Password1$"
 }
 
