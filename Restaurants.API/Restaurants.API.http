@@ -1,5 +1,5 @@
 @Restaurants_API_HostAddress = https://localhost:7008
-@token = CfDJ8JTmmV4OhTdGrfWl2kOFzwO9BMehBm2CfWqWSuOnfB-E1hffX-kITmrUP8ZVcn5qd9tKv4pdSYumXLk6_nybbKPun68eVGqNz98jB4XrFtu47ibkJ-P0FU8A8mQeJ-YV6VIUlA7RlzCNh17G1fi4wEaot90DAOeWMA-QcWt_2LemyWI2t_qn4fNciq2F-TsHCoMNaxijF7gxqmyIx5x6NWjjOd1kTJDyva91T2FK0jl3DLTHYNXDU1B9OTRjqniV96dzmSY4tinSS95lcZlkv37zX0v0lTNRYpfuSdmwruzJoo6cqykqGQA0V1EAiYiLAdo8LZxJ2-UKjQSeccW5NdquLGl64wEq9y2mFVAM7neEQgGtoDQ0hdpmD7yKAsvSgXzm2s9tY2JzL6X6qNQfZr2LCStgbQ2MWXkcZ0lE0DgGvR6NqGAGpl8XRmEOxQ3JbQlxiqjCDVczsGFXPfX4KkwC9g9gWpnz-HTtRs3kJNvZW4TXgm-4a8SwV1Em7AT5KsckhMwjGiIX5Bs9k9f7gB4tafMe-YkQSoxCeZBLzpUK3fFLdPZLqSu8xu7IcbMvB8XCPAv1ZMy73zEYQMPo10vfaTB-nb9Cp2wqm6hPYZLxTho8B1syT9HBCsOa1yqwo3f9eRNukJmJ-FnSG1iXCKK2ZMoy7He96iKXXtL6nTDb5rQ0x4LxU9YXccs-Nk3S2n4AIPAL9q2b0pjKfuOeYKLSMoixp4Lkw7rlLZqEhFnI___JBzMbWBbL9nTchHnO3_dki8zMMQT8fpvG2fZhJ0Bq4T_GSZChsg3uZMmzEEvz
+@token = CfDJ8JTmmV4OhTdGrfWl2kOFzwNi-56EjvlICzTsyJZGmM1iWD9LXQDBvuA0J1lMduwiFglynfQ-C1Gq2Orcj1QYbVaNkip95xdz7DpISe94MYKBXhI8W1hvCWaCw3sMuIot6DgrzyUGrDrPV7q3bm1d_hvP8HtypzCwswFtVYWUExOkO-06wZTS9qfQ6ZqkzjVNo2rjfTHrIHEaaQULU-L9CVnYQ177fC-Ry02ZKd3z0gybo_h1Kf-exLEnr2eaJUgutDXNs9U9nwWR2Tgosu3G2pM0JR2TW6-m1NHMDPKANOWdeps4K4BkksaWf7TZfv_4GqcW8G4O9HezYnzOB91Q47ujub4wd84B8gZB-dDLttf_m34fLK4tHXX64zY3yLGGqs5kuU7YLRL3LMGWG407ajQ4m-k9A6Wv7bFT2hQCH_mqLArDst79sYu-Wyhpoyo7NKZ27CAEgO8oLM3dsqkxBmDsYiQ_88B9JalskVJuCLTq3UuA3H7oVr5WIKzKfIGdBSQKCDXvxsQkJpqdExYdeo3cSCiKPqn3MfubnZt_YYrTbaPSHq2VKXglYpPdkhSyAtvjvbhlNahRDEOUhrvilwzzvz_uD8dfK2-SUJXpqK3Fr1VDeT-siESvUH7pUatE-YyB9Y2AEaTyKplIeFgwi_MY7xfR-LZSogY4ZXLmUoamCqQEGqUA1XxxpmJWVDoVFjikNNsWPhCNYt7swjcdLlMwGawD8_9yA-0_Z1uUBNBxZ93FKwZHtcF0-AtOaq4DxZwQAyF_mZMHSOp9PVYj7Ks19qhQsZJRFO8Irc4LGuzq
 
 
 
@@ -18,7 +18,7 @@ Authorization : Bearer {{token}}
 Content-Type: application/json
 
 {
-    "Name": "Owner Restaurant",
+    "Name": "Owner2 Restaurant2",
     "Description" : "Owners Restaurant Beef and Chicken",
     "Category" : "Sri Lankan",
     "ContactEmail" : "oz@gmail.com",
@@ -76,7 +76,7 @@ POST {{Restaurants_API_HostAddress}}/api/identity/register
 Content-Type: application/json
 
 {
-    "email" : "owner@test.com",
+    "email" : "owner2@test.com",
     "password" : "Password1$"
 }
 
@@ -85,7 +85,7 @@ POST {{Restaurants_API_HostAddress}}/api/identity/login
 Content-Type: application/json
 
 {
-    "email" : "user@test.com",
+    "email" : "owner2@test.com",
     "password" : "Password1$"
 }
 
@@ -98,6 +98,17 @@ Authorization: Bearer {{token}}
 {
   "Nationality" : "French",
   "DateOfBirth" : "2015-07-10"
+}
+
+###
+
+POST {{Restaurants_API_HostAddress}}/api/identity/userRole
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "UserEmail" : "owner2@test.com",
+  "RoleName" : "Owner"
 }
 
 ###
