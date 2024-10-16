@@ -14,4 +14,6 @@ public interface IRestaurantsRepository
     Task Delete(Restaurant restaurant);
 
     Task SaveChanges();
+
+    Task<IEnumerable<Restaurant>> GetAllMatchingAsync(string? searchPhrase);
 }

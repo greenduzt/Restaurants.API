@@ -12,7 +12,7 @@ public class GetAllRestaurantQueryHandler(ILogger<RestaurantDto> logger, IRestau
     {
         logger.LogInformation("Getting all restaurants");
 
-        var restaurants = await restaurantsRepository.GetAllAsync();
+        var restaurants = await restaurantsRepository.GetAllMatchingAsync(request.SearchPhrase);
 
         var restaurantsDtos = mapper.Map<IEnumerable<RestaurantDto>>(restaurants);
 

@@ -19,11 +19,11 @@ namespace Restaurants.API.Controllers;
 public class RestaurantsController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
-    //[AllowAnonymous]
-    [Authorize(Policy = PolicyNames.CreatedAtLeast2Restaurants)]
-    public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll()
+    [AllowAnonymous]
+    //[Authorize(Policy = PolicyNames.CreatedAtLeast2Restaurants)]
+    public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll([FromQuery] GetAllRestaurantsQuery query)
     {
-        var restaulrants = await mediator.Send(new GetAllRestaurantsQuery());
+        var restaulrants = await mediator.Send(query);
 
         return Ok(restaulrants);
     }
