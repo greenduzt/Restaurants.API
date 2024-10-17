@@ -3,7 +3,7 @@
 
 
 
-GET {{Restaurants_API_HostAddress}}/api/restaurants?searchPhrase=wiza&pageSize=10&pageNumber=1
+GET {{Restaurants_API_HostAddress}}/api/restaurants?searchPhrase=&pageSize=5&pageNumber=1
 Authorization : Bearer {{token}}
 
 ###
