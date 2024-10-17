@@ -3,7 +3,7 @@
 
 
 
-GET {{Restaurants_API_HostAddress}}/api/restaurants?searchPhrase=&pageSize=5&pageNumber=1
+GET {{Restaurants_API_HostAddress}}/api/restaurants?searchPhrase=&pageSize=5&pageNumber=1&sortBy=Name&sortDirection=Ascending
 Authorization : Bearer {{token}}
 
 ###
