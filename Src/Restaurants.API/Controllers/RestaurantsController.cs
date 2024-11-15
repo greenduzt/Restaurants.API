@@ -86,4 +86,6 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
         await mediator.Send(command);
         return NoContent();
     }
+
+    // Adding a logo
 }
