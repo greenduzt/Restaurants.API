@@ -14,4 +14,5 @@ public class RestaurantDto
     public string? Street { get; set; }
     public string? PostCode { get; set; }
     public List<DishDto> Dishes { get; set; } = [];
+    public string? LogoSasUrl { get; internal set; }
 }
