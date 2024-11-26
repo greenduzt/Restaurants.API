@@ -30,7 +30,7 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("{id}")]
-    [Authorize(Policy = PolicyNames.HasNationality)]
+    //[Authorize(Policy = PolicyNames.HasNationality)]
     public async Task<ActionResult<RestaurantDto>> GettById([FromRoute]int id)
     {
         var restaurant = await mediator.Send(new GetRestaurantByIdQuery(id));
@@ -79,7 +79,7 @@ public class RestaurantsController(IMediator mediator) : ControllerBase
         var command = new UploadRestaurantLogoCommand()
         {
             RestaurantId = id,
-            FileName = file.FileName,
+            FileName = $"{id}-{file.FileName}",
             File = stream
         };
 
