@@ -4,6 +4,14 @@
       "type": "storage",
       "connectionId": "LocalStorageConnectionString",
       "dynamicId": null
+    },
+    "secrets1": {
+      "type": "secrets"
+    },
+    "storage2": {
+      "type": "storage",
+      "connectionId": "LocalStorageConnectionStringProd",
+      "dynamicId": null
     }
   }
 }

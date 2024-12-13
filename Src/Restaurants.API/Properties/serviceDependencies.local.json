@@ -5,6 +5,15 @@
       "type": "storage.emulator",
       "connectionId": "LocalStorageConnectionString",
       "dynamicId": null
+    },
+    "secrets1": {
+      "type": "secrets.user"
+    },
+    "storage2": {
+      "secretStore": "LocalSecretsFile",
+      "type": "storage.emulator",
+      "connectionId": "LocalStorageConnectionStringProd",
+      "dynamicId": null
     }
   }
 }

@@ -10,15 +10,12 @@ namespace Restaurants.Infrastructure.Seeders;
 public class RestaurantSeeder(RestaurantsDbContext dbContext) : IRestaurantSeeder
 {
     public async Task Seed()
-    {
+    {      
 
-        
-
-
-        if(dbContext.Database.GetPendingMigrations().Any())
-        {
-            await dbContext.Database.MigrateAsync(); 
-        }
+       // if(dbContext.Database.GetPendingMigrations().Any())
+       // {
+       //     await dbContext.Database.MigrateAsync(); 
+       // }
 
         // Check if can connect to the database
 
