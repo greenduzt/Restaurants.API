@@ -1,17 +1,10 @@
-﻿using Xunit;
-using Restaurants.API.Middlewares;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Moq;
-
+﻿using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Restaurants.Domain.Exceptions;
+using Moq;
 using Restaurants.Domain.Entities;
-using FluentAssertions;
+using Restaurants.Domain.Exceptions;
+using Xunit;
 
 
 namespace Restaurants.API.Middlewares.Tests
