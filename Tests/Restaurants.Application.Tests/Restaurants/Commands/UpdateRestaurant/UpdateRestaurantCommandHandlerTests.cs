@@ -73,23 +73,22 @@ public class UpdateRestaurantCommandHandlerTests
     public async Task Handle_WithNonExistingRestaurant_ShouldThrowNotFoundException()
     {
         // Arrange
-        var restaurantId = 2;
-        var request = new UpdateRestaurantCommand()
+        var restaurantId = 1;
+        var request = new UpdateRestaurantCommand
         {
             Id = restaurantId
         };
 
         _restRepoMock.Setup(r => r.GetByIdAsync(restaurantId))
-            .ReturnsAsync((Restaurant?)null);
+                .ReturnsAsync((Restaurant?)null);
 
-        // Act
+        // act
 
         Func<Task> act = async () => await _handler.Handle(request, CancellationToken.None);
 
-        // Assert
-
+        // assert
         await act.Should().ThrowAsync<NotFoundException>()
-            .WithMessage($"Restaurant with id: {restaurantId} doesn't exist");
+                .WithMessage($"Restaurant with id: {restaurantId} doesn't exist");
     }
 
     [Fact]

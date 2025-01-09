@@ -16,18 +16,18 @@ public class UpdateRestaurantCommandHandler(ILogger<UpdateRestaurantCommandHandl
 {
     public async Task Handle(UpdateRestaurantCommand request, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Updating restaurant with Id: {RestaurantId} with {@UpdatedRestaurant}",request.Id, request);       
-
-        var restaurant =  await restaurantsRepository.GetByIdAsync( request.Id );
-        if (restaurant == null)
-            throw new NotFoundException(nameof(Restaurant),request.Id.ToString());
+        logger.LogInformation("Updating restaurant with id: {RestaurantId} with {@UpdatedRestaurant}", request.Id, request);
+        var restaurant = await restaurantsRepository.GetByIdAsync(request.Id);
+        if (restaurant is null)
+            throw new NotFoundException(nameof(Restaurant), request.Id.ToString());
 
         if (!restaurantAuthorizationService.Authorize(restaurant, ResourceOperation.Update))
             throw new ForbidException();
 
-        mapper.Map(request,restaurant);
+        mapper.Map(request, restaurant);
+   
 
         await restaurantsRepository.SaveChanges();
-        
+
     }
 }

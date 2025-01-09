@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿
+using FluentAssertions;
 using Microsoft.AspNetCore.Authorization.Policy;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
@@ -6,20 +7,21 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Moq;
 using Restaurants.API.Tests;
+using Restaurants.Application.Restaurants.Dtos;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Repositories;
 using Restaurants.Infrastructure.Seeders;
 using System.Net;
+using System.Net.Http.Json;
 using Xunit;
-
 
 namespace Restaurants.API.Controllers.Tests;
 
 public class RestaurantsControllerTests : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly WebApplicationFactory<Program> _factory;
-    private readonly Mock<IRestaurantsRepository> _restaurantRepositoryMock = new ();
-    private readonly Mock<IRestaurantSeeder> _restaurantsSeederMock = new ();
+    private readonly Mock<IRestaurantsRepository> _restaurantsRepositoryMock = new();
+    private readonly Mock<IRestaurantSeeder> _restaurantsSeederMock = new();
 
     public RestaurantsControllerTests(WebApplicationFactory<Program> factory)
     {
@@ -28,76 +30,39 @@ public class RestaurantsControllerTests : IClassFixture<WebApplicationFactory<Pr
             builder.ConfigureTestServices(services =>
             {
                 services.AddSingleton<IPolicyEvaluator, FakePolicyEvaluator>();
-                services.Replace(ServiceDescriptor.Scoped(typeof(IRestaurantsRepository), _ => _restaurantRepositoryMock.Object));
+                services.Replace(ServiceDescriptor.Scoped(typeof(IRestaurantsRepository),
+                                            _ => _restaurantsRepositoryMock.Object));
 
-                services.Replace(ServiceDescriptor.Scoped(typeof(IRestaurantSeeder), _ => _restaurantsSeederMock.Object));
+
+                services.Replace(ServiceDescriptor.Scoped(typeof(IRestaurantSeeder),
+                                            _ => _restaurantsSeederMock.Object));
             });
         });
     }
 
 
-    [Fact()]
+    [Fact]
     public async Task GetById_ForNonExistingId_ShouldReturn404NotFound()
     {
-        // Arrange
+        // arrange
 
-        var id = 1111;
+        var id = 1123;
 
-        _restaurantRepositoryMock.Setup(m => m.GetByIdAsync(id)).ReturnsAsync((Restaurant?)null);
+        _restaurantsRepositoryMock.Setup(m => m.GetByIdAsync(id)).ReturnsAsync((Restaurant?)null);
 
         var client = _factory.CreateClient();
 
-
-        // Act
-
+        // act
         var response = await client.GetAsync($"/api/restaurants/{id}");
 
-
-
         // Assert
-
         response.StatusCode.Should().Be(HttpStatusCode.NotFound);
-
-
     }
 
-
-    [Fact()]
-    public async Task GetAll_ForValidRequest_Return200Ok()
-    {
-        // Arrange
-
-        var client = _factory.CreateClient();
-
-        // Act
-
-        var result = await client.GetAsync("/api/restaurants?pageNumber=1&pageSize=10");
-
-        // Assert
-
-        result.StatusCode.Should().Be(System.Net.HttpStatusCode.OK);
-    }
-
-    [Fact()]
-    public async Task GetAll_ForInValidRequest_Return400BadRequst()
-    {
-        // Arrange
-
-        var client = _factory.CreateClient();
-
-        // Act
-
-        var result = await client.GetAsync("/api/restaurants");
-
-        // Assert
-
-        result.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest);
-    }
-
-    [Fact()]
+    [Fact]
     public async Task GetById_ForExistingId_ShouldReturn200Ok()
     {
-        // Arrange
+        // arrange
 
         var id = 99;
 
@@ -105,26 +70,51 @@ public class RestaurantsControllerTests : IClassFixture<WebApplicationFactory<Pr
         {
             Id = id,
             Name = "Test",
-            Description = "Test Description"
+            Description = "Test description"
         };
 
-
-        _restaurantRepositoryMock.Setup(m => m.GetByIdAsync(id)).ReturnsAsync(restaurant);
+        _restaurantsRepositoryMock.Setup(m => m.GetByIdAsync(id)).ReturnsAsync(restaurant);
 
         var client = _factory.CreateClient();
 
-
-        // Act
-
+        // act
         var response = await client.GetAsync($"/api/restaurants/{id}");
-        // Read the JSON Dto
-        //var restaurantDto = await response.Content.ReadAsStringAsync<RestaurantDto>();
-
+        var restaurantDto = await response.Content.ReadFromJsonAsync<RestaurantDto>();
 
         // Assert
-
         response.StatusCode.Should().Be(HttpStatusCode.OK);
+        restaurantDto.Should().NotBeNull();
+        restaurantDto.Name.Should().Be("Test");
+        restaurantDto.Description.Should().Be("Test description");
+    }
 
+    [Fact]
+    public async Task GetAll_ForValidRequest_Returns200Ok()
+    {
+        // arrange
+        var client = _factory.CreateClient();
+
+        // act
+        var result = await client.GetAsync("/api/restaurants?pageNumber=1&pageSize=10");
+
+        // assert
+
+        result.StatusCode.Should().Be(System.Net.HttpStatusCode.OK);
+
+    }
+
+    [Fact]
+    public async Task GetAll_ForInvalidRequest_Returns400BadRequest()
+    {
+        // arrange
+        var client = _factory.CreateClient();
+
+        // act
+        var result = await client.GetAsync("/api/restaurants");
+
+        // assert
+
+        result.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest);
 
     }
 }
