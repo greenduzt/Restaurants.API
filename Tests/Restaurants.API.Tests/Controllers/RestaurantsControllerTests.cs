@@ -1,5 +1,4 @@
-﻿
-using Restaurants.API;
+﻿using Restaurants.API;
 using FluentAssertions;
 using Microsoft.AspNetCore.Authorization.Policy;
 using Microsoft.AspNetCore.Mvc.Testing;
