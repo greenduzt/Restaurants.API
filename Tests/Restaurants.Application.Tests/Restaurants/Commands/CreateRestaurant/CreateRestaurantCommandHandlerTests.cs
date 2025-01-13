@@ -1,23 +1,20 @@
 ﻿using AutoMapper;
-using Castle.Core.Logging;
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
-using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Restaurants.Application.Users;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Repositories;
 using Xunit;
 
-
-namespace Restaurants.Application.Tests.Restaurants.Commands.CreateRestaurant;
+namespace Restaurants.Application.Restaurants.Commands.CreateRestaurant.Tests;
 
 public class CreateRestaurantCommandHandlerTests
 {
     [Fact()]
-    public async void Handle_ForValidCommand_ReturnsCreatedRestaurantId()
+    public async Task Handle_ForValidCommand_ReturnsCreatedRestaurantId()
     {
-        // Arrange
+        // arrange
         var loggerMock = new Mock<ILogger<CreateRestaurantCommandHandler>>();
         var mapperMock = new Mock<IMapper>();
 
@@ -26,28 +23,27 @@ public class CreateRestaurantCommandHandlerTests
 
         mapperMock.Setup(m => m.Map<Restaurant>(command)).Returns(restaurant);
 
-
-        var restRepoMock = new Mock<IRestaurantsRepository>();
-        restRepoMock
+        var restaurantRepositoryMock = new Mock<IRestaurantsRepository>();
+        restaurantRepositoryMock
             .Setup(repo => repo.Create(It.IsAny<Restaurant>()))
             .ReturnsAsync(1);
 
         var userContextMock = new Mock<IUserContext>();
-        var currentUser = new CurrentUser("owner_id", "test@test.com", [] , null, null);
-        userContextMock.Setup(x=>x.GetCurrentUser()).Returns(currentUser);
+        var currentUser = new CurrentUser("owner-id", "test@test.com", [], null, null);
+        userContextMock.Setup(u => u.GetCurrentUser()).Returns(currentUser);
 
 
-        var commandHandler = new CreateRestaurantCommandHandler(loggerMock.Object, mapperMock.Object, restRepoMock.Object,userContextMock.Object);
+        var commandHandler = new CreateRestaurantCommandHandler(loggerMock.Object, 
+            mapperMock.Object, 
+            restaurantRepositoryMock.Object,
+            userContextMock.Object);
 
-        // Act
-
+        // act
         var result = await commandHandler.Handle(command, CancellationToken.None);
 
-        // Asset
-
+        // assert
         result.Should().Be(1);
-        restaurant.OwnerId.Should().Be("owner_id");
-        restRepoMock.Verify(r => r.Create(restaurant), Times.Once);
-
+        restaurant.OwnerId.Should().Be("owner-id");
+        restaurantRepositoryMock.Verify(r => r.Create(restaurant), Times.Once);
     }
 }

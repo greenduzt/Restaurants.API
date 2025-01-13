@@ -8,25 +8,23 @@ public class CreateRestaurantCommandValidatorTests
     [Fact()]
     public void Validator_ForValidCommand_ShouldNotHaveValidationErrors()
     {
-        // Arrange
+        // arrange
 
         var command = new CreateRestaurantCommand()
         {
             Name = "Test",
-            Description = "Test Desc",
             Category = "Italian",
             ContactEmail = "test@test.com",
-            PostCode = "12-345"
+            PostCode = "12-345",
         };
 
         var validator = new CreateRestaurantCommandValidator();
 
-        // Act
+        // act
 
-        var result =  validator.TestValidate(command); 
+        var result = validator.TestValidate(command);
 
-
-        // Assert
+        // assert
 
         result.ShouldNotHaveAnyValidationErrors();
     }
@@ -34,52 +32,48 @@ public class CreateRestaurantCommandValidatorTests
     [Fact()]
     public void Validator_ForInvalidCommand_ShouldHaveValidationErrors()
     {
-        // Arrange
+        // arrange
 
         var command = new CreateRestaurantCommand()
         {
             Name = "Te",
-            Description = "Test Desc",
             Category = "Ita",
             ContactEmail = "@test.com",
-            PostCode = "12345"
+            PostCode = "12345",
         };
 
         var validator = new CreateRestaurantCommandValidator();
 
-        // Act
+        // act
 
         var result = validator.TestValidate(command);
 
-
-        // Assert
+        // assert
 
         result.ShouldHaveValidationErrorFor(c => c.Name);
-        //result.ShouldHaveValidationErrorFor(c => c.Category);
+        result.ShouldHaveValidationErrorFor(c => c.Category);
         result.ShouldHaveValidationErrorFor(c => c.ContactEmail);
         result.ShouldHaveValidationErrorFor(c => c.PostCode);
     }
 
+
     [Theory()]
     [InlineData("Italian")]
-    [InlineData("Maxican")]
+    [InlineData("Mexican")]
     [InlineData("Japanese")]
     [InlineData("American")]
     [InlineData("Indian")]
     public void Validator_ForValidCategory_ShouldNotHaveValidationErrorsForCategoryProperty(string category)
     {
-
-        // Arrange
-
+        // arrange
         var validator = new CreateRestaurantCommandValidator();
-        var command = new CreateRestaurantCommand() { Category = category };
+        var command = new CreateRestaurantCommand { Category = category };
 
-        // Act
+        // act
 
         var result = validator.TestValidate(command);
 
-        // Assert
-
+        // assert
         result.ShouldNotHaveValidationErrorFor(c => c.Category);
 
     }
@@ -89,23 +83,17 @@ public class CreateRestaurantCommandValidatorTests
     [InlineData("102-20")]
     [InlineData("10 220")]
     [InlineData("10-2 20")]
-    
-
-    public void Validator_ForInvalidPostalCode_ShouldHaveValidationErrorsForPostalCodeProperty(string postCode)
+    public void Validator_ForInvalidPostCode_ShouldHaveValidationErrorsForPostCodeProperty(string PostCode)
     {
-
-        // Arrange 
-
+        // arrange
         var validator = new CreateRestaurantCommandValidator();
-        var command = new CreateRestaurantCommand() { PostCode = postCode };
+        var command = new CreateRestaurantCommand { PostCode = PostCode };
 
-        // Act
+        // act
 
         var result = validator.TestValidate(command);
 
-        // Assert
-
+        // assert
         result.ShouldHaveValidationErrorFor(c => c.PostCode);
-
     }
 }

@@ -18,41 +18,42 @@ namespace Restaurants.Application.Users.Tests
         [Fact()]
         public void GetCurrentUser_WithAuthenticatedUser_ShouldReturnCurrentUser()
         {
-            // Arrange
+            // arrange
+            var dateOfBirth = new DateOnly(1990, 1, 1);
 
-            var httpContextMock = new Mock<IHttpContextAccessor>();
-
+            var httpContextAccessorMock = new Mock<IHttpContextAccessor>();
             var claims = new List<Claim>()
             {
-                new (ClaimTypes.NameIdentifier, "1"),
-                new (ClaimTypes.Email, "test@test.com"),
-                new (ClaimTypes.Role, UserRole.Admin),
-                new (ClaimTypes.Role, UserRole.User),
-                new ("Nationality", "German"),
-                new ("DateOfBirth", new DateOnly(1990,1,1).ToString("yyyy-MM-dd"))
-
+                new(ClaimTypes.NameIdentifier, "1"),
+                new(ClaimTypes.Email, "test@test.com"),
+                new(ClaimTypes.Role, UserRole.Admin),
+                new(ClaimTypes.Role, UserRole.User),
+                new("Nationality", "German"),
+                new("DateOfBirth", dateOfBirth.ToString("yyyy-MM-dd"))
             };
 
             var user = new ClaimsPrincipal(new ClaimsIdentity(claims, "Test"));
 
-            httpContextMock.Setup(x => x.HttpContext).Returns(new DefaultHttpContext()
+            httpContextAccessorMock.Setup(x => x.HttpContext).Returns(new DefaultHttpContext()
             {
                 User = user
             });
 
-            var userContext = new UserContext(httpContextMock.Object);
+            var userContext = new UserContext(httpContextAccessorMock.Object);
 
-            // Act
+            // act
             var currentUser = userContext.GetCurrentUser();
 
-            // Asset
+
+            // asset
 
             currentUser.Should().NotBeNull();
             currentUser.Id.Should().Be("1");
             currentUser.Email.Should().Be("test@test.com");
-            currentUser.Roles.Should().ContainInOrder(UserRole.Admin,UserRole.User);
+            currentUser.Roles.Should().ContainInOrder(UserRole.Admin, UserRole.User);
             currentUser.Nationality.Should().Be("German");
-            currentUser.DateOfBirth.Should().Be(new DateOnly(1990, 1, 1));
+            currentUser.DateOfBirth.Should().Be(dateOfBirth);
+
 
         }
 
@@ -60,25 +61,20 @@ namespace Restaurants.Application.Users.Tests
         public void GetCurrentUser_WithUserContextNotPresent_ThrowsInvalidOperationException()
         {
             // Arrange
+            var httpContextAccessorMock = new Mock<IHttpContextAccessor>();
+            httpContextAccessorMock.Setup(x => x.HttpContext).Returns((HttpContext)null);
 
-            var httpContextMock = new Mock<IHttpContextAccessor>();
-            httpContextMock.Setup(x => x.HttpContext).Returns((HttpContext)null);
+            var userContext = new UserContext(httpContextAccessorMock.Object);
 
-
-            var userContext = new UserContext(httpContextMock.Object);
-
-            // Act
+            // act
 
             Action action = () => userContext.GetCurrentUser();
 
-
-            // Assert
+            // assert 
 
             action.Should()
                 .Throw<InvalidOperationException>()
-                .WithMessage("User context is present");
+                .WithMessage("User context is not present");
         }
-
-        
     }
 }

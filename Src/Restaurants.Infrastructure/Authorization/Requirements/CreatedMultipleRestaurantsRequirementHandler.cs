@@ -5,10 +5,10 @@ using Restaurants.Domain.Repositories;
 
 namespace Restaurants.Infrastructure.Authorization.Requirements;
 
-public class CreatedMultipleRestaurantsCreatedHandler(IRestaurantsRepository restaurantsRepository,
-    IUserContext userContext) : AuthorizationHandler<CreatedMultipleRestaurantsCreated>
+public class CreatedMultipleRestaurantsRequirementHandler(IRestaurantsRepository restaurantsRepository,
+    IUserContext userContext) : AuthorizationHandler<CreatedMultipleRestaurantsRequirement>
 {
-    protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, CreatedMultipleRestaurantsCreated requirement)
+    protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, CreatedMultipleRestaurantsRequirement requirement)
     {
         var currentUser = userContext.GetCurrentUser();
 

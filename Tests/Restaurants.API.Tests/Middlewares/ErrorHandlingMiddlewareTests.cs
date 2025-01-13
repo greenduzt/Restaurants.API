@@ -1,11 +1,10 @@
-﻿using FluentAssertions;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
+﻿using Xunit;
 using Moq;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Exceptions;
-using Xunit;
-
+using FluentAssertions;
 
 namespace Restaurants.API.Middlewares.Tests
 {
@@ -14,80 +13,72 @@ namespace Restaurants.API.Middlewares.Tests
         [Fact()]
         public async Task InvokeAsync_WhenNoExceptionThrown_ShouldCallNextDelegate()
         {
-            // Arrange
+            // arrange
 
             var loggerMock = new Mock<ILogger<ErrorHandlingMiddleware>>();
-            var errorHandlingMiddleware = new ErrorHandlingMiddleware(loggerMock.Object);
-            var httpContext = new DefaultHttpContext();
+            var middleware = new ErrorHandlingMiddleware(loggerMock.Object);
+            var context = new DefaultHttpContext();
             var nextDelegateMock = new Mock<RequestDelegate>();
 
-            // Act
+            // act
 
-            await errorHandlingMiddleware.InvokeAsync(httpContext, nextDelegateMock.Object);
+            await middleware.InvokeAsync(context, nextDelegateMock.Object);
 
-            // Assert
+            // assert
 
-            nextDelegateMock.Verify(next => next.Invoke(httpContext), Times.Once);
+            nextDelegateMock.Verify(next => next.Invoke(context), Times.Once);
         }
 
-        [Fact()]
+        [Fact]
         public async Task InvokeAsync_WhenNotFoundExceptionThrown_ShouldSetStatusCode404()
         {
             // Arrange
-
-            var notFountException = new NotFoundException(nameof(Restaurant),"1");
+            var context = new DefaultHttpContext();
             var loggerMock = new Mock<ILogger<ErrorHandlingMiddleware>>();
-            var httpContext = new DefaultHttpContext();
-            var errorHandlingMiddleware = new ErrorHandlingMiddleware(loggerMock.Object);
-            var nextDelegateMock = new Mock<RequestDelegate>();
+            var middleware = new ErrorHandlingMiddleware(loggerMock.Object);
+            var notFoundException = new NotFoundException(nameof(Restaurant), "1");
 
-            // Act
-
-            await errorHandlingMiddleware.InvokeAsync(httpContext, _ => throw notFountException);
+            // act
+            await middleware.InvokeAsync(context, _ => throw notFoundException);
 
             // Assert
-            httpContext.Response.StatusCode.Should().Be(404);
+            context.Response.StatusCode.Should().Be(404);
 
         }
 
-        [Fact()]
+        [Fact]
         public async Task InvokeAsync_WhenForbidExceptionThrown_ShouldSetStatusCode403()
         {
             // Arrange
-
-            var forbidException = new ForbidException();
+            var context = new DefaultHttpContext();
             var loggerMock = new Mock<ILogger<ErrorHandlingMiddleware>>();
-            var httpContext = new DefaultHttpContext();
-            var errorHandlingMiddleware = new ErrorHandlingMiddleware(loggerMock.Object);
-            var nextDelegateMock = new Mock<RequestDelegate>();
+            var middleware = new ErrorHandlingMiddleware(loggerMock.Object);
+            var exception = new ForbidException();
 
-            // Act
-
-            await errorHandlingMiddleware.InvokeAsync(httpContext, _ => throw forbidException);
+            // act
+            await middleware.InvokeAsync(context, _ => throw exception);
 
             // Assert
-            httpContext.Response.StatusCode.Should().Be(403);
+            context.Response.StatusCode.Should().Be(403);
 
         }
 
-        [Fact()]
+        [Fact]
         public async Task InvokeAsync_WhenGenericExceptionThrown_ShouldSetStatusCode500()
         {
             // Arrange
-
-            var exception = new Exception();
+            var context = new DefaultHttpContext();
             var loggerMock = new Mock<ILogger<ErrorHandlingMiddleware>>();
-            var httpContext = new DefaultHttpContext();
-            var errorHandlingMiddleware = new ErrorHandlingMiddleware(loggerMock.Object);
-            var nextDelegateMock = new Mock<RequestDelegate>();
+            var middleware = new ErrorHandlingMiddleware(loggerMock.Object);
+            var exception = new Exception();
 
-            // Act
-
-            await errorHandlingMiddleware.InvokeAsync(httpContext, _ => throw exception);
+            // act
+            await middleware.InvokeAsync(context, _ => throw exception);
 
             // Assert
-            httpContext.Response.StatusCode.Should().Be(500);
+            context.Response.StatusCode.Should().Be(500);
 
         }
+
     }
- }
+}

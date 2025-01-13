@@ -40,11 +40,11 @@ public static class ServiceCollectionExtenstions
             .AddPolicy(PolicyNames.AtLeast20,
                 builder => builder.AddRequirements(new MinimumAgeRequirement(20)))
             .AddPolicy(PolicyNames.CreatedAtLeast2Restaurants,
-                builder => builder.AddRequirements(new CreatedMultipleRestaurantsCreated(2)));
+                builder => builder.AddRequirements(new CreatedMultipleRestaurantsRequirement(2)));
         
 
         services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
-        services.AddScoped<IAuthorizationHandler, CreatedMultipleRestaurantsCreatedHandler>();
+        services.AddScoped<IAuthorizationHandler, CreatedMultipleRestaurantsRequirementHandler>();
         services.AddScoped<IRestaurantAuthorizationService, RestaurantAuthorizationService>();
 
         services.Configure<BlobStorageSettings>(configuration.GetSection("BlobStorage"));
