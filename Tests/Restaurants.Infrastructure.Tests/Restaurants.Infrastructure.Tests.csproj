@@ -22,10 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Src\Restaurants.API\Restaurants.API.csproj" />
-    <ProjectReference Include="..\..\Src\Restaurants.Application\Restaurants.Application.csproj" />
-    <ProjectReference Include="..\..\Src\Restaurants.Domain\Restaurants.Domain.csproj" />
-    <ProjectReference Include="..\..\src\Restaurants.Infrastructure\Restaurants.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Src\Restaurants.Infrastructure\Restaurants.Infrastructure.csproj" />
   </ItemGroup>
+
+ 
 
 </Project>
