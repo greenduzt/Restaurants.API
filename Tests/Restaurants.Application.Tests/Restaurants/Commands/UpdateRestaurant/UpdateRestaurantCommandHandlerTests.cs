@@ -8,8 +8,11 @@ using Restaurants.Domain.Exceptions;
 using Restaurants.Domain.Interfaces;
 using Restaurants.Domain.Repositories;
 using Xunit;
+using Restaurants.Application;
 
 namespace Restaurants.Application.Restaurants.Commands.UpdateRestaurant.Tests;
+
+
 
 public class UpdateRestaurantCommandHandlerTests
 {
