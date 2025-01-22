@@ -14,16 +14,11 @@ public class DishesRepository(RestaurantsDbContext dbContext) : IDishesRepositor
         return dish.Id;
     }
 
-    public Task Delete(Dish dish)
+    public async Task Delete(IEnumerable<Dish> entities)
     {
-        throw new NotImplementedException();
-    }
-
-    public async Task Delete(IEnumerable<Dish> dishes)
-    {
-        dbContext.RemoveRange(dishes);
+        dbContext.Dishes.RemoveRange(entities);
         await dbContext.SaveChangesAsync();
-    }
+    }   
 
     public Task<IEnumerable<Dish>> GetAllAsync()
     {

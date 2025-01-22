@@ -14,6 +14,7 @@ public class CreateRestaurantCommandValidatorTests
         {
             Name = "Test",
             Category = "Italian",
+            Description = "test",
             ContactEmail = "test@test.com",
             PostCode = "12-345",
         };
@@ -38,6 +39,7 @@ public class CreateRestaurantCommandValidatorTests
         {
             Name = "Te",
             Category = "Ita",
+            Description = "test",
             ContactEmail = "@test.com",
             PostCode = "12345",
         };

@@ -64,23 +64,18 @@ internal class RestaurantsRepository(RestaurantsDbContext dbContext) : IRestaura
     public async Task<Restaurant?> GetByIdAsync(int id)
     {
         var restaurant = await dbContext.Restaurants
-            .Include(d => d.Dishes)
+            .Include(r => r.Dishes)
             .FirstOrDefaultAsync(x => x.Id == id);
 
         return restaurant;
-    }    
+    }
 
     public async Task Delete(Restaurant restaurant)
     {
         dbContext.Restaurants.Remove(restaurant);
         await dbContext.SaveChangesAsync();        
     }
-
-    //public async Task Update(Restaurant restaurant)
-    //{
-    //    dbContext.Update(restaurant);
-    //    await dbContext.SaveChangesAsync();       
-    //}
+ 
 
     public Task SaveChanges()
         => dbContext.SaveChangesAsync();

@@ -9,6 +9,8 @@ public class RestaurantsProfile : Profile
 {
     public RestaurantsProfile()
     {
+        CreateMap<UpdateRestaurantCommand, Restaurant>();
+
         CreateMap<CreateRestaurantCommand, Restaurant>()
            .ForMember(d => d.Address, opt => opt.MapFrom(
                src => new Address
@@ -28,13 +30,13 @@ public class RestaurantsProfile : Profile
             .ForMember(d => d.Dishes, opt => opt.MapFrom(src => src.Dishes));
 
 
-        CreateMap<UpdateRestaurantCommand, Restaurant>()
-             .ForMember(d => d.Address, opt => opt.MapFrom(
-               src => new Address
-               {
-                   City = src.City,
-                   PostCode = src.PostCode,
-                   Street = src.Street
-               }));
+        //CreateMap<UpdateRestaurantCommand, Restaurant>()
+        //     .ForMember(d => d.Address, opt => opt.MapFrom(
+        //       src => new Address
+        //       {
+        //           City = src.City,
+        //           PostCode = src.PostCode,
+        //           Street = src.Street
+        //       }));
     }
 }
