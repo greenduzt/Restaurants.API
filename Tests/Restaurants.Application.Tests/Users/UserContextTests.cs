@@ -48,7 +48,7 @@ namespace Restaurants.Application.Users.Tests
             // asset
 
             currentUser.Should().NotBeNull();
-            currentUser.Id.Should().Be("2");
+            currentUser.Id.Should().Be("1");
             currentUser.Email.Should().Be("test@test.com");
             currentUser.Roles.Should().ContainInOrder(UserRole.Admin, UserRole.User);
             currentUser.Nationality.Should().Be("German");
