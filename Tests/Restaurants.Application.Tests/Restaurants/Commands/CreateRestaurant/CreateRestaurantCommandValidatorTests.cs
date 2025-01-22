@@ -61,7 +61,7 @@ public class CreateRestaurantCommandValidatorTests
 
     [Theory()]
     [InlineData("Italian")]
-    [InlineData("Mexican")]
+    [InlineData("Sri Lankan")]
     [InlineData("Japanese")]
     [InlineData("American")]
     [InlineData("Indian")]
